@@ -15,7 +15,7 @@ static LoginCubit get(context) => BlocProvider.of(context);
   LoginModel? loginModel ;
 
   final FirebaseAuth auth = FirebaseAuth.instance;
-  get user => auth.currentUser;
+//  get user => auth.currentUser;
 
 Future userLogin ({
   required String email,

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:social_app/layout/social_layout/cubit/cubit.dart';
 import 'package:social_app/layout/social_layout/cubit/states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_app/models/user_model.dart';
+import 'package:social_app/modules/chat_details/chat_details.dart';
 import 'package:social_app/share/components/components.dart';
-
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 class ChatsScreen extends StatelessWidget {
 
 
@@ -13,10 +15,16 @@ class ChatsScreen extends StatelessWidget {
     return BlocConsumer<SocialCubit,SocialStates> (
       listener : (context , builder ) {},
       builder : (context , builder ) {
-          return ListView.separated(
-              itemBuilder: (context , index ) => buildChatItem(),
-              separatorBuilder: (context , index ) => myDivider(),
-              itemCount: 10);
+          return ConditionalBuilder(
+              condition: SocialCubit.get(context).allUser.length > 0,
+              builder: (context) =>  ListView.separated(
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (context , index ) => buildChatItem(SocialCubit.get(context).allUser[index],context),
+                  separatorBuilder: (context , index ) => myDivider(),
+                  itemCount: SocialCubit.get(context).allUser.length),
+              fallback: (context) => Center(child: CircularProgressIndicator()));
+
+
         }
 
     );
@@ -25,19 +33,24 @@ class ChatsScreen extends StatelessWidget {
 
   }
 
-  Widget buildChatItem ()=> InkWell(
-    onTap: (){},
+  Widget buildChatItem (UserModel model, context)=> InkWell(
+    onTap: (){
+  navigateTo(context, ChatDetails(
+    userModel: model,
+  ),);
+    },
     child: Padding(
       padding: const EdgeInsets.all(10.0),
       child: Row(
         children:  [
           CircleAvatar(
             backgroundImage:
-            NetworkImage('https://img.freepik.com/free-photo/beautiful-woman-wearing-hijab_23-2149288928.jpg?size=626&ext=jpg&uid=R79215799&ga=GA1.2.1667610189.1663195053'),
+            NetworkImage('${model.image}'),
             radius: 25.0,
           ),
           SizedBox(width: 10.0,),
-          Text('sara Elgamal',
+          Text('${model.name}',
+            style: TextStyle(fontSize: 18.0),
           ),
 
         ],

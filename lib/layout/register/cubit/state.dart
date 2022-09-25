@@ -21,7 +21,9 @@ class StatePasswordVisibilityRegister extends StatesRegister {}
 class StateLoadingCreate extends StatesRegister {}
 
 class StateSuccessCreate extends StatesRegister {
+  final String uid;
 
+  StateSuccessCreate(this.uid);
 }
 
 class StateErrorCreate extends StatesRegister {

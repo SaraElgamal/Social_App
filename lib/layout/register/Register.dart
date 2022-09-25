@@ -26,7 +26,17 @@ class Register extends StatelessWidget {
         listener: (context , state) {
        if(state is StateSuccessCreate)
        {
-         navigateFinish(context, Social());
+         CacheHelper.saveData(
+
+           key :  'uid',
+
+           value : state.uid,
+
+         ).then((value){
+
+           navigateFinish(context, Social());
+         });
+
        }
         },
         builder: (context , state) {

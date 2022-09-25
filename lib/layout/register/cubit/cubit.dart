@@ -19,7 +19,7 @@ class RegisterCubit extends Cubit<StatesRegister>{
 static RegisterCubit get(context) => BlocProvider.of(context);
   LoginModel? loginModel ;
   final FirebaseAuth auth = FirebaseAuth.instance;
-  get user => auth.currentUser;
+ // get user => auth.currentUser;
 Future userRegister ({
   required String name,
   required String phone,
@@ -61,15 +61,19 @@ Future userRegister ({
       phone: phone,
       uid: uid,
       isVerified: false,
+      bio: 'write your bio',
+      cover: 'https://img.freepik.com/free-photo/excited-happy-young-pretty-woman_171337-2005.jpg?w=996&t=st=1664129514~exp=1664130114~hmac=2988a5543902e7b3c411c675926dfd315ed616768cede28c652bd9bfd7c09cc6',
+      image: 'https://img.freepik.com/premium-photo/young-arab-woman-laughing-happy-carefree-natural-emotion_1187-111861.jpg?w=996',
     );
     emit(StateLoadingCreate());
 
     await FirebaseFirestore.instance
         .collection('users')
-        .doc(uid).set(model.toMap()
+        .doc(uid)
+        .set(model.toMap()
     ).then((value) {
 
-      emit(StateSuccessCreate());
+      emit(StateSuccessCreate(uid));
     }
     ).catchError((error){
       print(error.toString());

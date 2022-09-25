@@ -51,8 +51,8 @@ class Social extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(IconBroken.Location,),
           label: 'Users',
           ),
-          BottomNavigationBarItem(icon: Icon(IconBroken.Setting,),
-          label: 'Settings',
+          BottomNavigationBarItem(icon: Icon(IconBroken.Profile,),
+          label: 'Profile',
           ),
         ],
 

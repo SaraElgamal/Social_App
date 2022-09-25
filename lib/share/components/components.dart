@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:social_app/style/IconBroken.dart';
 import 'package:social_app/style/color.dart';
 
 
@@ -118,14 +119,33 @@ void printLongString(String text) {
   pattern.allMatches(text).forEach((RegExpMatch match) =>   print(match.group(0)));
 }
 Widget myDivider ()=>Padding(
-  padding: const EdgeInsetsDirectional.only(start: 20.0),
+  padding: const EdgeInsetsDirectional.only(start: 20.0, end: 20.0,),
   child: Container(
     width: double.infinity,
-    color: Colors.grey[400],
+    color: Colors.grey[300],
 
     height: 1.0,
   ),
 );
+
+PreferredSizeWidget appBarDefaultTheme({
+  required BuildContext context,
+  String? title,
+  List<Widget>? actions,
+}) => AppBar(
+  leading: IconButton(
+    icon: Icon(
+      IconBroken.Arrow___Left_2,
+    ),
+    onPressed: (){
+      Navigator.pop(context);
+    },
+  ),
+  title: Text(title!),
+  actions: actions,
+
+);
+
 Widget buildListItem ( model , context , {bool isOldPrice = false}) => Padding(
   padding: const EdgeInsets.all(20.0),
   child:  Container(

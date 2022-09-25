@@ -32,7 +32,7 @@ var formKey = GlobalKey<FormState>();
             state: ToastStates.ERROR,
           );
           }
-       var s;
+
        if (state is StateSuccessLogin)
        {
 
