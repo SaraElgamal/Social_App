@@ -56,7 +56,7 @@ Widget defaultField( {
 Widget defaultButton({
   double width =  double.infinity,
   double height = 40.0,
-  double radius = 0.0,
+  double radius = 20.0,
   Color color= defaultColor,
   bool isUpperCase = true,
   required String text,
@@ -75,7 +75,7 @@ Widget defaultButton({
     },
     child: Text(isUpperCase ? text.toUpperCase() : text,
       style:const TextStyle(color: Colors.white,
-          fontSize: 16.0),),
+          fontSize: 14.0),),
 
   ),
 );
