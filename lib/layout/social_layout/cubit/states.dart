@@ -10,6 +10,14 @@ class ErrorGetUserState extends SocialStates{
   ErrorGetUserState(this.error);
 }
 
+class LoadingGetPostsState extends SocialStates{}
+class SuccessGetPostsState extends SocialStates{}
+class ErrorGetPostsState extends SocialStates{
+  final String error ;
+
+  ErrorGetPostsState(this.error);
+}
+
 class LoadingAllUsersState extends SocialStates{}
 class SuccessAllUsersState extends SocialStates{}
 class ErrorAllUsersState extends SocialStates{
@@ -64,3 +72,12 @@ class SuccessEditPostImageState extends SocialStates{}
 class ErrorEditPostImageState extends SocialStates{}
 
 class SuccessRemovePostImageState extends SocialStates{}
+
+class SuccessLikesPostState extends SocialStates{}
+class ErrorUpLikesPostState extends SocialStates{}
+//chats
+class SuccessSendMessageState extends SocialStates{}
+class ErrorUpSendMessageState extends SocialStates{}
+
+class SuccessGetMessageState extends SocialStates{}
+
